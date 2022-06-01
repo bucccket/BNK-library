@@ -1,23 +1,23 @@
 import { FileStream } from "./FileStream";
-import { Section } from "./sections/Section";
+import { BKHD } from "./sections";
+import { Section } from "./sections";
 
 export class SoundbankFile {
     public sections: Section[];
 
-    private data: Buffer;
     private stream:FileStream;
 
     constructor(data: Buffer) {
-        this.data = data;
-        this.stream = new FileStream(this.data);
+        this.stream = new FileStream(data);
         this.sections = [];
     }
 
     read(){
+        const bkhd = new BKHD(this.stream);
+        this.sections.push(bkhd);
         while(this.stream.getBytesAvailable()>0){
-            const section = new Section(this.stream);
-            console.log(`got section section: ${section.name}`);
-            this.sections.push(section);
+            this.sections.push(new Section(this.stream));
         }
+        console.log("End of file.");
     }
 } 

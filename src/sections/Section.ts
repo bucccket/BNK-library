@@ -11,10 +11,7 @@ export class Section {
     constructor(stream: FileStream){
         this.name = stream.readSectionString();
         this.size = stream.readUint32();
+        console.log(`got ${this.name} with ${this.size} bytes`);
         this.data = stream.readData(this.size);
-    }
-
-    static read(buffer: FileStream): Section {
-        return new Section(buffer);
     }
 }

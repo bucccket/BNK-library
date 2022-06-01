@@ -14,7 +14,7 @@ export class FileStream {
     }
 
     readData(length: number): Buffer {
-        if(length > this.getBytesAvailable()){
+        if (length > this.getBytesAvailable()) {
             throw new Error(`Tried reading ${length} bytes with ${this.size} bytes available`);
         }
         this.offset += length;
@@ -23,22 +23,23 @@ export class FileStream {
 
     readUint8(): number {
         this.offset++;
-        return this.buffer.readUint8(this.offset);
+        return this.buffer.readUint8(this.offset - 1);
     }
 
-    readUint16(): number  {
+    readUint16(): number {
         this.offset += 2;
-        return this.buffer.readUint16LE(this.offset);
+        return this.buffer.readUint16LE(this.offset - 2);
     }
 
-    readUint24(): number  {
+    readUint24(): number {
         this.offset += 3;
-        return this.buffer.readIntLE(this.offset, 3);
+        return this.buffer.readIntLE(this.offset - 3, 3);
     }
 
-    readUint32(): number  {
+
+    readUint32(): number {
         this.offset += 4;
-        return this.buffer.readUint32LE(this.offset);
+        return this.buffer.readUint32LE(this.offset - 4);
     }
 
     readSectionString(): String {
@@ -48,5 +49,9 @@ export class FileStream {
 
     getBytesAvailable(): number {
         return this.size - this.offset;
+    }
+
+    skipBytes(skip: number): void {
+        this.offset += skip;
     }
 }
