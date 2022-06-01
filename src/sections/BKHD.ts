@@ -10,7 +10,7 @@ export class BKHD extends Section {
     BnkID: number = 0;
 
     static read(data: FileStream): BKHD {
-        const section: BKHD = new BKHD();
+        const section: BKHD = new BKHD(data);
         return section;
     }
 }

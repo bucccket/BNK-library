@@ -14,6 +14,9 @@ export class FileStream {
     }
 
     readData(length: number): Buffer {
+        if(length > this.getBytesAvailable()){
+            throw new Error(`Tried reading ${length} bytes with ${this.size} bytes available`);
+        }
         this.offset += length;
         return this.buffer.slice(this.offset - length, this.offset); // already added length smh
     }

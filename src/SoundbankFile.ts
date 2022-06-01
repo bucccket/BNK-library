@@ -14,11 +14,10 @@ export class SoundbankFile {
     }
 
     read(){
-        if(this.stream.getBytesAvailable()>0){ 
-            
-        } else{
-            return null;
+        while(this.stream.getBytesAvailable()>0){
+            const section = new Section(this.stream);
+            console.log(`got section section: ${section.name}`);
+            this.sections.push(section);
         }
     }
-
-}
+} 
