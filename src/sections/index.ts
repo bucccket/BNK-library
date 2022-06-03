@@ -1,4 +1,4 @@
-export * from './STMG'
+export * from "./STMG";
 
-export * from './BKHD'
-export * from './Section'
+export * from "./BKHD";
+export * from "./Section";

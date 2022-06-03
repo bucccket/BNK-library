@@ -1,4 +1,4 @@
-import { float, u16, u24, u32, u64, u8 } from "./datatypes";
+import { float, u16, u24, u32, u64, u8 } from "./DataTypes";
 
 export class FileStream {
     buffer: Buffer;
@@ -17,7 +17,9 @@ export class FileStream {
 
     readData(length: number): Buffer {
         if (length > this.getBytesAvailable()) {
-            throw new Error(`Tried reading ${length} bytes with ${this.getBytesAvailable()} bytes available`);
+            throw new Error(
+                `Tried reading ${length} bytes with ${this.getBytesAvailable()} bytes available`
+            );
         }
         this.offset += length;
         return this.buffer.slice(this.offset - length, this.offset); // already added length smh
@@ -45,22 +47,26 @@ export class FileStream {
 
     readUint64(): u64 {
         this.offset += 8;
-        let result:u64 = (this.buffer.readUint32LE(this.offset-8)<<32)&this.buffer.readUint32LE(this.offset-4);
-        if(Number.isSafeInteger(result)){
+        let result: u64 =
+            (this.buffer.readUint32LE(this.offset - 8) << 32) &
+            this.buffer.readUint32LE(this.offset - 4);
+        if (Number.isSafeInteger(result)) {
             return result;
-        } else { 
-            throw new Error("ERROR: Failed reading 64 bit integer. -> Unsafe Integer");
+        } else {
+            throw new Error(
+                "ERROR: Failed reading 64 bit integer. -> Unsafe Integer"
+            );
         }
     }
 
     readSectionString(): String {
         const length = 4;
-        return this.readData(length).toString('utf8');
+        return this.readData(length).toString("utf8");
     }
 
     readFloat(): float {
         this.offset += 4;
-        return this.buffer.readFloatLE(this.offset-4);
+        return this.buffer.readFloatLE(this.offset - 4);
     }
 
     getBytesAvailable(): number {
@@ -72,11 +78,10 @@ export class FileStream {
     }
 
     isEOF(): boolean {
-        if (this.getBytesAvailable() == 0) { 
-            return true; 
-        } else { 
-            return false; 
+        if (this.getBytesAvailable() == 0) {
+            return true;
+        } else {
+            return false;
         }
-
     }
 }

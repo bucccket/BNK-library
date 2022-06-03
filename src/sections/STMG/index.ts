@@ -1,2 +1,2 @@
-export * from './stategroup'
-export * from './STMG'
+export * from "./StateGroup";
+export * from "./STMG";

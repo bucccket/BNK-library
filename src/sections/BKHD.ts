@@ -1,7 +1,7 @@
-//BKHD 
+//BKHD
 //The BKHD section (Bank Header) contains the version number and the SoundBank id.
 
-import { u16, u32, u64 } from "../datatypes";
+import { u16, u32, u64 } from "../DataTypes";
 import { Section } from "./Section";
 
 export class BKHD extends Section {
@@ -22,7 +22,7 @@ export class BKHD extends Section {
         this.version = this.content.readUint32();
 
         if (this.version <= 26) {
-            this.content.readData(8);//unkown data 2xU32
+            this.content.readData(8); //unkown data 2xU32
             this.bankGeneratorVersion = this.content.readUint32();
         } else {
             this.bankGeneratorVersion = this.content.readUint32();
