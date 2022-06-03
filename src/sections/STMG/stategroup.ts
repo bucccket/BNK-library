@@ -1,4 +1,4 @@
-import { u32 } from "../../DataTypes";
+import { u32 } from "../../datatypes";
 import { FileStream } from "../../FileStream";
 
 export class StateGroup {

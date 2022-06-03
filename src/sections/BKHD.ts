@@ -1,7 +1,7 @@
 //BKHD
 //The BKHD section (Bank Header) contains basic information about the BNK file.
 
-import { u16, u32, u64 } from "../DataTypes";
+import { u16, u32, u64 } from "../datatypes";
 import { Section } from "./Section";
 
 export class BKHD extends Section {

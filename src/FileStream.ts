@@ -1,4 +1,4 @@
-import { float, u16, u24, u32, u64, u8 } from "./DataTypes";
+import { float, u16, u24, u32, u64, u8 } from "./datatypes";
 
 export class FileStream {
     buffer: Buffer;

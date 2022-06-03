@@ -1,9 +1,9 @@
 //STMG
 //The STMG section section can only be found in the Init.bnk SoundBank. It contains the project settings as well as the Switch Groups, State Groups and Game Parameters.
 
-import { u16, u32, float } from "../../DataTypes";
+import { u16, u32, float } from "../../datatypes";
 import { Section } from "../Section";
-import { StateGroup } from "./StateGroup";
+import { StateGroup } from "./stategroup";
 
 export class STMG extends Section {
     volumeThreshold: float = 0;
