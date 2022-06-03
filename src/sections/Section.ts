@@ -2,16 +2,22 @@ import { FileStream } from "../FileStream";
 
 export class Section {
     
-    name: String;
+    name: String = "";
 
-    size: number;
+    size: number = 0;
 
-    data: Buffer;
+    content: FileStream;
 
-    constructor(stream: FileStream){
-        this.name = stream.readSectionString();
-        this.size = stream.readUint32();
-        console.log(`got ${this.name} with ${this.size} bytes`);
-        this.data = stream.readData(this.size);
-    }
+    constructor(stream: FileStream|Section) {
+        if(stream instanceof FileStream){
+            this.name = stream.readSectionString();
+            this.size = stream.readUint32();
+            console.log(`got ${this.name} with ${this.size} bytes`);
+            this.content = new FileStream(stream.readData(this.size));
+        }else{
+            this.name = stream.name;
+            this.size = stream.size;
+            this.content = stream.content;
+        }
+    }   
 }
