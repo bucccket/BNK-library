@@ -1,7 +1,5 @@
-import { copyFileSync } from "fs";
 import { FileStream } from "./FileStream";
-import { BKHD, STMG } from "./sections";
-import { Section } from "./sections";
+import { BKHD, STMG, Section } from "./sections";
 
 export class SoundbankFile {
     public sections: Section[];
@@ -14,26 +12,27 @@ export class SoundbankFile {
     }
 
     read() {
-        while (this.stream.getBytesAvailable() > 0) {
-            let section:Section = new Section(this.stream);
+        while (this.stream.getBytesAvailable() >= 8) {
+            const section: Section = new Section(this.stream);
             switch (section.name) {
                 case "BKHD":
-                    let bkhd = new BKHD(section);
+                    const bkhd = new BKHD(section);
                     bkhd.read();
                     this.sections.push(bkhd);
                     break;
                 case "STMG":
-                    let stmg = new STMG(section);
-                    //stmg.read();
+                    const stmg = new STMG(section);
+                    // stmg.read();
                     this.sections.push(stmg);
                     break;
-            }   
+            }
         }
-        if (this.stream.isEOF()) {
-            console.log("End of file.");
+        if (!this.stream.isEOF()) {
+            console.log(
+                "WARNING: Did not read file completely. Data may be corrupt or missing."
+            );
         }
-        else {
-            console.log("WARNING: Did not read file completely. Data may be corrupt or missing.");
-        }
+
+        console.log("Finished reading.");
     }
-} 
+}

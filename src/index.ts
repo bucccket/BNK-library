@@ -1,5 +1,6 @@
 //--packages--
-export * from './sections'
+export * from "./sections";
 
 //--local directory classes--
-export * from './FileStream'
+export * from "./FileStream";
+export * from "./DataTypes";

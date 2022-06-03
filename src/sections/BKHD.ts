@@ -1,7 +1,7 @@
-//BKHD 
-//The BKHD section (Bank Header) contains the version number and the SoundBank id.
+//BKHD
+//The BKHD section (Bank Header) contains basic information about the BNK file.
 
-import { u16, u32, u64 } from "../datatypes";
+import { u16, u32, u64 } from "../DataTypes";
 import { Section } from "./Section";
 
 export class BKHD extends Section {
@@ -22,7 +22,7 @@ export class BKHD extends Section {
         this.version = this.content.readUint32();
 
         if (this.version <= 26) {
-            this.content.readData(8);//unkown data 2xU32
+            this.content.readData(8); // unknown data 2xU32
             this.bankGeneratorVersion = this.content.readUint32();
         } else {
             this.bankGeneratorVersion = this.content.readUint32();
@@ -38,10 +38,10 @@ export class BKHD extends Section {
         }
 
         if (this.version <= 126) {
-            //in later versions seems 16b=feedback + 16b=?, but this is how it's read/checked
+            // in later versions seems 16b=feedback + 16b=?, but this is how it's read/checked
             this.feedbackInBank = this.content.readUint32() & 1;
         } else {
-            this.content.readUint16(); //unneeded flags??
+            this.content.readUint16(); // unneeded flags??
             this.deviceAllocated = this.content.readUint16();
         }
 
