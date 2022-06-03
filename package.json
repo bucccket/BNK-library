@@ -1,0 +1,32 @@
+{
+  "name": "bnk-library",
+  "version": "1.0.0",
+  "description": "Wwise Soundbank parser written for Brawlhalla modding ",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^4.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bucccket/BNK-libraray.git"
+  },
+  "keywords": [
+    "BNK",
+    "Soundbank",
+    ".bnk",
+    "Soundbank",
+    "Brawlhalla",
+    "Wwise",
+    "Soundbank"
+  ],
+  "author": "Bucccket, itselectroz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bucccket/BNK-libraray/issues"
+  },
+  "homepage": "https://github.com/bucccket/BNK-libraray#readme"
+}
