@@ -1,7 +1,7 @@
 import { FileStream } from "../FileStream";
 
 export class Section {
-    name: String = "";
+    name: string = "";
 
     size: number = 0;
 

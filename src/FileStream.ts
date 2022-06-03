@@ -59,7 +59,7 @@ export class FileStream {
         }
     }
 
-    readSectionString(): String {
+    readSectionString(): string {
         const length = 4;
         return this.readData(length).toString("utf8");
     }
