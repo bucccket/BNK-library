@@ -1,9 +1,10 @@
+import { u32 } from "../datatypes";
 import { FileStream } from "../FileStream";
 
 export class Section {
     name: string = "";
 
-    size: number = 0;
+    size: u32 = 0;
 
     content: FileStream;
 
@@ -18,5 +19,9 @@ export class Section {
             this.size = stream.size;
             this.content = stream.content;
         }
+    }
+
+    read(version: number): void {
+
     }
 }

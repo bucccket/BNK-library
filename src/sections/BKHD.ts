@@ -1,3 +1,4 @@
+import { FileStream } from './../FileStream';
 //BKHD
 //The BKHD section (Bank Header) contains basic information about the BNK file.
 
@@ -14,8 +15,8 @@ export class BKHD extends Section {
     deviceAllocated: u16 = 0;
     projectID: u32 = 0;
 
-    constructor(section: Section) {
-        super(section);
+    constructor(stream: FileStream) {
+        super(stream);
     }
 
     read(): void {

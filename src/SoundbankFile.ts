@@ -12,17 +12,15 @@ export class SoundbankFile {
     }
 
     read() {
+        const bkhd = new BKHD(this.stream);
+        bkhd.read();
+        this.sections.push(bkhd);
         while (this.stream.getBytesAvailable() >= 8) {
             const section: Section = new Section(this.stream);
             switch (section.name) {
-                case "BKHD":
-                    const bkhd = new BKHD(section);
-                    bkhd.read();
-                    this.sections.push(bkhd);
-                    break;
                 case "STMG":
                     const stmg = new STMG(section);
-                    // stmg.read();
+                    stmg.read(bkhd.version);
                     this.sections.push(stmg);
                     break;
             }
